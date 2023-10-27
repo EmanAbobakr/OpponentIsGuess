@@ -9,6 +9,8 @@ import { GameOverScreen } from "./screens/GameOverScreen";
 export default function App() {
   const [enteredNum, setEnteredNum] = React.useState();
   const [gameIsOver, setGameIsOver] = React.useState(false);
+  //why can not guessRoundsNum be a normal num not state?
+  const [guessRounds, setGuessRounds] = React.useState(0);
 
   function pickedNumHandler(pickedNum) {
     setEnteredNum(pickedNum);
@@ -16,8 +18,16 @@ export default function App() {
     //setGameIsOver(false);
   }
 
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds) {
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
+  }
+
+  function startNewGameHandler() {
+    console.log("new game");
+    setEnteredNum(null);
+    setGameIsOver(false);
+    setGuessRounds(0);
   }
 
   let screen = <StartGameScreen onConfirmNum={pickedNumHandler} />;
@@ -28,7 +38,13 @@ export default function App() {
     );
   }
   if (gameIsOver && enteredNum) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        roundsNumber={guessRounds}
+        userNumbers={enteredNum}
+        onStartNewGame={startNewGameHandler}
+      />
+    );
   }
 
   return (
