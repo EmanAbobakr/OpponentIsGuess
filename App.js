@@ -42,7 +42,9 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.backGroundImage}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        {screen}
+        {/* why do I need this safe area? */}
+        {/* <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView> */}
       </ImageBackground>
     </LinearGradient>
   );
