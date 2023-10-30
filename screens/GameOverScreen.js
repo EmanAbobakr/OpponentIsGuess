@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image, Text } from "react-native";
-import { Title } from "../components/ui/Title";
+import { StyleSheet, View, Image, Text, Platform } from "react-native";
+import { Title } from "../components/ui/Title.ios";
 import { Colors } from "../constants/colors";
 import { PrimaryButton } from "../components/ui/PrimaryButton";
 
@@ -8,10 +8,17 @@ export function GameOverScreen({ roundsNumber, userNumbers, onStartNewGame }) {
     <View style={styles.screen}>
       <Title>GAME OVER!</Title>
       <View style={styles.circularImageContainer}>
-        <Image
-          source={require("../assets/images/success.webp")}
-          style={styles.img}
-        ></Image>
+        {Platform.OS === "android" ? (
+          <Image
+            source={require("../assets/images/Android/success.webp")}
+            style={styles.img}
+          />
+        ) : (
+          <Image
+            source={require("../assets/images/Ios/success.jpeg")}
+            style={styles.img}
+          />
+        )}
       </View>
       <Text style={styles.summaryText}>
         Your phone needed{" "}
