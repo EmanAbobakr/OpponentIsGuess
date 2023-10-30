@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { GameScreen } from "./screens/GameScreen";
 import { Colors } from "./constants/colors";
 import { GameOverScreen } from "./screens/GameOverScreen";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [enteredNum, setEnteredNum] = React.useState();
@@ -48,21 +49,24 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      style={styles.rootScreen}
-      colors={[Colors.primary700, Colors.accent500]}
-    >
-      <ImageBackground
-        source={require("./assets/images/background.jpg")}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
         style={styles.rootScreen}
-        imageStyle={styles.backGroundImage}
+        colors={[Colors.primary700, Colors.accent500]}
       >
-        {screen}
-        {/* why do I need this safe area? */}
-        {/* <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView> */}
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require("./assets/images/background.jpg")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backGroundImage}
+        >
+          {screen}
+          {/* why do I need this safe area? */}
+          {/* <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView> */}
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
